@@ -1,18 +1,19 @@
 # Release Notes
 
-## v1.1.0 - 2026-03-04
+## v1.2.0 - 2026-03-04
 
-- Добавлены реальные входные документы задания:
-  - `data/raw/lemmas_1.txt`
-  - `data/raw/lemmas_2.txt`
-  - `data/raw/tokens_1.txt`
-- Сгенерированы итоговые файлы токенов и лемм для этих документов:
-  - `output/tokens/lemmas_1_tokens.txt`
-  - `output/tokens/lemmas_2_tokens.txt`
-  - `output/tokens/tokens_1_tokens.txt`
-  - `output/lemmas/lemmas_1_lemmas.txt`
-  - `output/lemmas/lemmas_2_lemmas.txt`
-  - `output/lemmas/tokens_1_lemmas.txt`
+- Переименованы входные документы в формат страниц выкачки:
+  - `data/raw/page_1.txt`
+  - `data/raw/page_2.txt`
+  - `data/raw/page_3.txt`
+- Пересобраны выходные файлы в явном формате «страница -> токены + леммы»:
+  - `output/tokens/page_1_tokens.txt`
+  - `output/tokens/page_2_tokens.txt`
+  - `output/tokens/page_3_tokens.txt`
+  - `output/lemmas/page_1_lemmas.txt`
+  - `output/lemmas/page_2_lemmas.txt`
+  - `output/lemmas/page_3_lemmas.txt`
+- Удалены файлы со старыми именами, которые могли мешать проверке.
 
 ## v1.0.0 - 2026-03-04
 
