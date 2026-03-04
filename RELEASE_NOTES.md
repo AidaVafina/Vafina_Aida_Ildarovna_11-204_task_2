@@ -1,5 +1,19 @@
 # Release Notes
 
+## v1.3.0 - 2026-03-04
+
+- Возвращены исходные названия входных файлов:
+  - `data/raw/lemmas_1.txt`
+  - `data/raw/lemmas_2.txt`
+  - `data/raw/tokens_1.txt`
+- Пересобраны выходные файлы строго от исходных имен входных данных:
+  - `output/tokens/lemmas_1_tokens.txt`
+  - `output/tokens/lemmas_2_tokens.txt`
+  - `output/tokens/tokens_1_tokens.txt`
+  - `output/lemmas/lemmas_1_lemmas.txt`
+  - `output/lemmas/lemmas_2_lemmas.txt`
+  - `output/lemmas/tokens_1_lemmas.txt`
+
 ## v1.2.0 - 2026-03-04
 
 - Переименованы входные документы в формат страниц выкачки:

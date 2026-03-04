@@ -51,14 +51,14 @@ python -m src.main --input-dir data/raw --output-dir output
 
 В репозитории уже лежат готовые результаты в папке `output/` для файлов из задания:
 
-- `data/raw/page_1.txt`
-- `data/raw/page_2.txt`
-- `data/raw/page_3.txt`
+- `data/raw/lemmas_1.txt`
+- `data/raw/lemmas_2.txt`
+- `data/raw/tokens_1.txt`
 
 Соответствие файлов:
 
-- `data/raw/page_1.txt` -> `output/tokens/page_1_tokens.txt` и `output/lemmas/page_1_lemmas.txt`
-- `data/raw/page_2.txt` -> `output/tokens/page_2_tokens.txt` и `output/lemmas/page_2_lemmas.txt`
-- `data/raw/page_3.txt` -> `output/tokens/page_3_tokens.txt` и `output/lemmas/page_3_lemmas.txt`
+- `data/raw/lemmas_1.txt` -> `output/tokens/lemmas_1_tokens.txt` и `output/lemmas/lemmas_1_lemmas.txt`
+- `data/raw/lemmas_2.txt` -> `output/tokens/lemmas_2_tokens.txt` и `output/lemmas/lemmas_2_lemmas.txt`
+- `data/raw/tokens_1.txt` -> `output/tokens/tokens_1_tokens.txt` и `output/lemmas/tokens_1_lemmas.txt`
 
 То есть преподаватель может проверить результат напрямую, не запуская код.
