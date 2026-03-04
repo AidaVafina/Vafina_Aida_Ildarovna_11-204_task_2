@@ -1,74 +1,102 @@
 acs acs
-acsучёный acsучёные acsучёный
 activity activity
+affairs affairs
+ages ages
 alteroffice alteroffice
 android android
 api api
 apple apple
+aquarius aquarius
+aries aries
 ars ars
-arочки arочки arочков
-arустройство arустройство arустройству
+article article
 asic asic
-asicчип asicчип asicчипах
+associated associated
 astra astra
+astrologers astrologers
+astrological astrological
+astrology astrology
+astronomy astronomy
 atmospheric atmospheric
 avalon avalon
 avatar avatar
 balong balong
+bethlehem bethlehem
 bitmain bitmain
 bitriver bitriver
 bloomberg bloomberg
 boeing boeing
+branches branches
 bridge bridge
 broadcast broadcast
 btc btc
 cam cam
 camera camera
+cancer cancer
+capricorn capricorn
 card card
 catalina catalina
+categories categories
 cd cd
+celestial celestial
 chembark chembark
 chemistry chemistry
 chilkoot chilkoot
+chinese chinese
+claiming claiming
 co co
+collectors collectors
+confused confused
 creator creator
 cyberpunk cyberpunk
+data data
+decumbiture decumbiture
+deities deities
 dell dell
 destiny destiny
+disambiguation disambiguation
 dlbi dlbi
 document document
 dualsense dualsense
 edge edge
 egate egate
+electional electional
 emarates emarates
 emirs emirs
 emm emm
 emus emus
+encyclopedia encyclopedia
 engine engine
 epic epic
+expand expand
 exploit exploit
 face face
 facebook facebook
+factors factors
 for for
 foundation foundation
 fragment fragment
 fragmentmanager fragmentmanager
+free free
 func func
 galaxy galaxy
 game game
 games games
 garmin garmin
 gas gas
+gemini gemini
 glasses glasses
 go go
 google google
 gwent gwent
 hcl hcl
 hidplaystation hidplaystation
-highloadпроект highloadпроект highloadпроектов
+history history
 huawei huawei
-i i
+human human
+images images
 immersion immersion
+influence influence
 innosilicon innosilicon
 interface interface
 ios ios
@@ -78,11 +106,15 @@ janus janus
 jetpack jetpack
 jetson jetson
 joycon joycon
+jump jump
 lens lens
+leo leo
+libra libra
 libreoffice libreoffice
 link link
 linux linux
-linuxсистема linuxсистема linuxсистемах
+listfor listfor
+lists lists
 live live
 lufthansa lufthansa
 macbook macbook
@@ -96,44 +128,50 @@ micro micro
 microsoft microsoft
 mimo mimo
 mmwave mmwave
+navigation navigation
 nikkei nikkei
 nintendo nintendo
 nomad nomad
 nuvia nuvia
 nvidia nvidia
+objects objects
 oled oled
-oledдисплей oledдисплеев oledдисплей
 orbiter orbiter
-p p
+organizations organizations
 php php
-phpразработчик phpразработчик phpразработчиков
+pisces pisces
 pixel pixel
+planetary planetary
 playstation playstation
 plusser plusser
 plusstring plusstring
 ppbv ppbv
-premiumtmнас premiumtmнас premiumtmнаса
 pro pro
 projekt projekt
 proposal proposal
-qaсессия qaсессия
+pseudoscience pseudoscience
 qtm qtm
 qualcomm qualcomm
 quixel quixel
-r r
 range range
 reallusion reallusion
 red red
 reddit reddit
+reference reference
+related related
 release release
 result result
 return return
-s s
+sagittarius sagittarius
 samsung samsung
 scada scada
+scientific scientific
+scorpio scorpio
+search search
+see see
 semiconductor semiconductor
 service service
-serviсe serviсe
+signs signs
 sixnines sixnines
 skyeng skyeng
 skype skype
@@ -144,35 +182,42 @@ sony sony
 southbridge southbridge
 spacex spacex
 spectrometer spectrometer
+star star
 starliner starliner
 store store
 streaming streaming
 string string
 stringer stringer
+strology strology
+stubs stubs
+study study
 suite suite
 switch switch
 taiwan taiwan
+taurus taurus
 teamviewer teamviewer
 technica technica
+technical technical
 telegram telegram
-telegramканал telegramканал
+texts texts
 tieriii tieriii
 today today
+tradition tradition
 tras tras
 tsmc tsmc
 type type
 ultraviolet ultraviolet
 unreal unreal
+uses uses
 utc utc
 uv uv
-v v
+virgo virgo
 vis vis
-vrгарнитур vrгарнитур
-vrшлем vrшлем vrшлема
 watch watch
 webrtc webrtc
 whatsminer whatsminer
 wifi wifi
+wikipedia wikipedia
 windows windows
 witcher witcher
 wus wus
@@ -250,7 +295,6 @@ zoom zoom
 базальт базальт
 баланс баланс
 банк банк банка банков банком
-батарейapple батарейapple
 батарея батарее батареи батарея
 безопасность безопасности безопасность безопасностью
 безопасный безопаснее безопасной безопасные безопасный безопасным безопасных
@@ -312,7 +356,6 @@ zoom zoom
 вероятность вероятность
 версия версией версии версий версию версия версиями версиях
 вести ведет ведут ведёт вести
-вестиhitech вестиhitech
 весь весь всего всей всем всеми всему вся
 вещество веществ вещества вещество
 взаимодействие взаимодействие
@@ -484,11 +527,9 @@ zoom zoom
 датировать датирована датировать
 датчик датчик датчиков
 дать дайте дали данная данной данные даст дать
-два два две двумя двух
 движение движение движений движению движения
 движок движка движке движок
 двухфакторный двухфакторную двухфакторный
-девять девять
 дезинформация дезинформацией дезинформации дезинформация
 действие действие действий действия действиям
 действительно действительно
@@ -504,7 +545,6 @@ zoom zoom
 дерипаск дерипаск дерипаске
 десятилетие десятилетие десятилетия
 десятилетиять десятилетияв десятилетиять
-десять десяти десять десятью
 детектировать детектировать детектируют
 дефицит дефицит дефицита дефиците
 деятельность деятельности деятельность
@@ -1025,7 +1065,7 @@ zoom zoom
 неправильно неправильно
 непубличный непубличный непубличных
 неразглашение неразглашение неразглашении
-несколько нескольким несколькими нескольких несколько
+несколько несколько
 нести несет нести несут
 неустановленный неустановленные неустановленный
 неясно неясно
@@ -1053,7 +1093,6 @@ zoom zoom
 нумерация нумерации нумерация
 нынешний нынешнее нынешней нынешние нынешний нынешним нынешняя
 оаэ оаэ
-оба оба обе обеих обоих
 обеспечение обеспечение обеспечением обеспечении обеспечению обеспечения
 обеспечивать обеспечиваем обеспечивает обеспечивать обеспечивающая
 обеспечить обеспечит обеспечить
@@ -1531,7 +1570,6 @@ zoom zoom
 пытаться пытается пытались пытаться пытаясь
 пых пых
 пятиминутка пятиминутка
-пять пяти пять
 пёс пса пёс
 пётр петр пётр
 работа работа работе работой работу работы
@@ -1915,7 +1953,6 @@ zoom zoom
 требоваться требовалось требоваться требуется
 тренировать тренировать тренирует
 третий третий третье третьего третьей третьим третьими третья
-три трех три трёх
 трошин трошин
 туманный туманный туманным
 турникет турникет турникетах
@@ -1989,7 +2026,6 @@ zoom zoom
 утро утра утро
 утром утром
 уходить уходит уходить
-учаcтие учаcтие
 участвовать участвовали участвовать участвующие
 участие участие участии участия
 участник участник участника участникам участниками участники участников
@@ -2081,7 +2117,6 @@ zoom zoom
 человекраный человекранее человекраный
 человеческий человеческий человеческим человеческими человеческих человеческого
 черта черта черты
-четыре четыре четырьмя четырёх
 чип чип чипа чипами чипах чипе чипом чипы
 чипсет чипсет
 число числа числе число числом
@@ -2096,7 +2131,6 @@ zoom zoom
 шеннон шеннон
 шереметьево шереметьево
 шериф шериф шерифа
-шесть шести шесть
 широкий широк широкий
 широко широко
 широта широта широтах
@@ -2135,7 +2169,7 @@ zoom zoom
 юридический юридический юридических юридической
 юрий юрий
 юрист юрист юристов
-я меня я
+я меня
 явление явление явлением явлениях
 являться является являлись являться являются являющиеся
 явный явного явный

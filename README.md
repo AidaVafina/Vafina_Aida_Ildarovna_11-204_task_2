@@ -1,27 +1,26 @@
-# Vafina_Aida_Ildarovna_11-204_task_2
+# Токенизация и лемматизация документов (`2_task`)
 
 Решение задания по предмету «Информационный поиск».
 
-## Что делает проект
+## Что делает скрипт
 
-Скрипт обрабатывает сохраненные документы и для **каждого исходного файла** формирует:
+1. Извлекает токены из каждого файла выкачки.
+2. Удаляет дубликаты (в рамках страницы), числа, смешанные буквенно-цифровые и мусорные токены.
+3. Удаляет служебные части речи (предлоги, союзы, частицы, числительные).
+4. Группирует токены по леммам с помощью `pymorphy3`.
+5. Формирует отдельные файлы токенов и лемм для каждого входного файла.
 
-1. Файл с уникальными токенами (без дубликатов, без чисел, без мусора, без союзов и предлогов).
-2. Файл с группировкой токенов по леммам.
-
-Лемматизация выполняется через `pymorphy3` (морфологический анализатор), а не через стемминг.
-
-## Структура проекта
+## Структура
 
 ```text
 .
-├── data/raw/                  # входные документы
-├── output/tokens/             # токены по каждому файлу
-├── output/lemmas/             # леммы по каждому файлу
-├── src/main.py                # основной скрипт
-├── requirements.txt
-├── DEPLOYMENT_MANUAL.md
-└── RELEASE_NOTES.md
+├── crawl_output/pages/        # входные документы
+├── tokens_by_page/            # токены по страницам
+├── lemmas_by_page/            # леммы по страницам
+├── tokens.txt                 # общий список токенов по всем страницам
+├── lemmatized_tokens.txt      # общий список лемм по всем страницам
+├── tokenize_and_lemmatize.py  # точка входа
+└── src/main.py                # основная логика
 ```
 
 ## Запуск
@@ -30,35 +29,21 @@
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-python -m src.main --input-dir data/raw --output-dir output
+python3 tokenize_and_lemmatize.py
 ```
 
-## Формат выходных файлов
+## Формат файлов
 
-1. `output/tokens/<имя_файла>_tokens.txt`
-Формат строки:
-```text
-<токен>\n
-```
+1. `tokens_by_page/*.txt`  
+`<токен>\n`
 
-2. `output/lemmas/<имя_файла>_lemmas.txt`
-Формат строки:
-```text
-<лемма> <токен1> <токен2> ... <токенN>\n
-```
+2. `lemmas_by_page/*.txt`  
+`<лемма> <токен1> <токен2> ... <токенN>\n`
 
-## Проверка без запуска
+## Соответствие файлов
 
-В репозитории уже лежат готовые результаты в папке `output/` для файлов из задания:
+- `crawl_output/pages/lemmas_1.txt` -> `tokens_by_page/lemmas_1.txt` + `lemmas_by_page/lemmas_1.txt`
+- `crawl_output/pages/lemmas_2.txt` -> `tokens_by_page/lemmas_2.txt` + `lemmas_by_page/lemmas_2.txt`
+- `crawl_output/pages/tokens_1.txt` -> `tokens_by_page/tokens_1.txt` + `lemmas_by_page/tokens_1.txt`
 
-- `data/raw/lemmas_1.txt`
-- `data/raw/lemmas_2.txt`
-- `data/raw/tokens_1.txt`
-
-Соответствие файлов:
-
-- `data/raw/lemmas_1.txt` -> `output/tokens/lemmas_1_tokens.txt` и `output/lemmas/lemmas_1_lemmas.txt`
-- `data/raw/lemmas_2.txt` -> `output/tokens/lemmas_2_tokens.txt` и `output/lemmas/lemmas_2_lemmas.txt`
-- `data/raw/tokens_1.txt` -> `output/tokens/tokens_1_tokens.txt` и `output/lemmas/tokens_1_lemmas.txt`
-
-То есть преподаватель может проверить результат напрямую, не запуская код.
+Преподаватель может проверить результат без запуска кода, так как выходные файлы уже находятся в репозитории.

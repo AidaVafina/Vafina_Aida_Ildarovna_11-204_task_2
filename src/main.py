@@ -9,13 +9,13 @@ from pathlib import Path
 
 try:
     from pymorphy3 import MorphAnalyzer
-except ImportError as error:  # pragma: no cover - dependency check on runtime environment.
+except ImportError as error:  # pragma: no cover
     raise SystemExit(
         "Dependency 'pymorphy3' is not installed. Run: pip install -r requirements.txt"
     ) from error
 
 TOKEN_PATTERN = re.compile(r"[A-Za-zА-Яа-яЁё]+(?:-[A-Za-zА-Яа-яЁё]+)*")
-IGNORED_PARTS_OF_SPEECH = {"PREP", "CONJ", "PRCL"}
+IGNORED_PARTS_OF_SPEECH = {"PREP", "CONJ", "PRCL", "NUMR"}
 SUPPORTED_EXTENSIONS = {".txt", ".html", ".htm", ".md"}
 
 
@@ -45,21 +45,49 @@ class VisibleTextExtractor(HTMLParser):
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Tokenization and lemmatization for saved documents."
+        description="Tokenize saved documents and group page tokens by lemmas."
     )
     parser.add_argument(
-        "--input-dir",
+        "--pages-dir",
         type=Path,
-        default=Path("data/raw"),
+        default=Path("crawl_output/pages"),
         help="Directory with source documents (.txt/.html/.htm/.md).",
     )
     parser.add_argument(
-        "--output-dir",
+        "--tokens-dir",
         type=Path,
-        default=Path("output"),
-        help="Directory where token and lemma files will be written.",
+        default=Path("tokens_by_page"),
+        help="Directory where token files per source page will be written.",
     )
+    parser.add_argument(
+        "--lemmas-dir",
+        type=Path,
+        default=Path("lemmas_by_page"),
+        help="Directory where lemma files per source page will be written.",
+    )
+    parser.add_argument(
+        "--combined-tokens",
+        type=Path,
+        default=Path("tokens.txt"),
+        help="Path for combined token list from all pages.",
+    )
+    parser.add_argument(
+        "--combined-lemmas",
+        type=Path,
+        default=Path("lemmatized_tokens.txt"),
+        help="Path for combined lemma-to-token mapping from all pages.",
+    )
+    # Backward-compatible aliases.
+    parser.add_argument("--input-dir", type=Path, help=argparse.SUPPRESS)
+    parser.add_argument("--output-dir", type=Path, help=argparse.SUPPRESS)
     return parser.parse_args()
+
+
+def resolve_paths(args: argparse.Namespace) -> tuple[Path, Path, Path]:
+    input_dir = args.input_dir if args.input_dir else args.pages_dir
+    if args.output_dir:
+        return input_dir, args.output_dir / "tokens", args.output_dir / "lemmas"
+    return input_dir, args.tokens_dir, args.lemmas_dir
 
 
 def read_document(path: Path) -> str:
@@ -85,7 +113,13 @@ def is_valid_token(token: str) -> bool:
     if any(char.isdigit() for char in token):
         return False
     letters_only = token.replace("-", "")
+    if len(letters_only) < 2:
+        return False
     if not letters_only.isalpha():
+        return False
+    has_cyrillic = any(("а" <= char <= "я") or char == "ё" for char in letters_only)
+    has_latin = any("a" <= char <= "z" for char in letters_only)
+    if has_cyrillic and has_latin:
         return False
     return True
 
@@ -112,13 +146,14 @@ def group_tokens_by_lemmas(tokens: list[str], morph: MorphAnalyzer) -> dict[str,
 
 
 def write_tokens(path: Path, tokens: list[str]) -> None:
-    lines = [f"{token}\n" for token in tokens]
-    path.write_text("".join(lines), encoding="utf-8")
+    path.write_text("".join(f"{token}\n" for token in tokens), encoding="utf-8")
 
 
 def write_lemmas(path: Path, lemmas: dict[str, list[str]]) -> None:
-    lines = [f"{lemma} {' '.join(tokens)}\n" for lemma, tokens in lemmas.items()]
-    path.write_text("".join(lines), encoding="utf-8")
+    path.write_text(
+        "".join(f"{lemma} {' '.join(tokens)}\n" for lemma, tokens in lemmas.items()),
+        encoding="utf-8",
+    )
 
 
 def get_input_files(input_dir: Path) -> list[Path]:
@@ -136,12 +171,19 @@ def get_input_files(input_dir: Path) -> list[Path]:
     return files
 
 
-def process_documents(input_dir: Path, output_dir: Path) -> None:
+def process_documents(
+    input_dir: Path,
+    tokens_dir: Path,
+    lemmas_dir: Path,
+    combined_tokens_path: Path,
+    combined_lemmas_path: Path,
+) -> None:
     morph = MorphAnalyzer()
-    token_dir = output_dir / "tokens"
-    lemma_dir = output_dir / "lemmas"
-    token_dir.mkdir(parents=True, exist_ok=True)
-    lemma_dir.mkdir(parents=True, exist_ok=True)
+    tokens_dir.mkdir(parents=True, exist_ok=True)
+    lemmas_dir.mkdir(parents=True, exist_ok=True)
+
+    all_tokens: set[str] = set()
+    all_lemmas: dict[str, set[str]] = defaultdict(set)
 
     for source_path in get_input_files(input_dir):
         raw_text = read_document(source_path)
@@ -149,11 +191,14 @@ def process_documents(input_dir: Path, output_dir: Path) -> None:
         tokens = tokenize(visible_text, morph)
         lemma_groups = group_tokens_by_lemmas(tokens, morph)
 
-        stem = source_path.stem
-        token_output = token_dir / f"{stem}_tokens.txt"
-        lemma_output = lemma_dir / f"{stem}_lemmas.txt"
+        token_output = tokens_dir / source_path.name
+        lemma_output = lemmas_dir / source_path.name
         write_tokens(token_output, tokens)
         write_lemmas(lemma_output, lemma_groups)
+
+        all_tokens.update(tokens)
+        for lemma, lemma_tokens in lemma_groups.items():
+            all_lemmas[lemma].update(lemma_tokens)
 
         print(
             "Processed:",
@@ -164,10 +209,24 @@ def process_documents(input_dir: Path, output_dir: Path) -> None:
             lemma_output,
         )
 
+    combined_tokens = sorted(all_tokens)
+    combined_lemma_map = {lemma: sorted(tokens) for lemma, tokens in sorted(all_lemmas.items())}
+    write_tokens(combined_tokens_path, combined_tokens)
+    write_lemmas(combined_lemmas_path, combined_lemma_map)
+    print("Combined tokens file:", combined_tokens_path)
+    print("Combined lemmas file:", combined_lemmas_path)
+
 
 def main() -> None:
     args = parse_args()
-    process_documents(args.input_dir, args.output_dir)
+    input_dir, tokens_dir, lemmas_dir = resolve_paths(args)
+    process_documents(
+        input_dir=input_dir,
+        tokens_dir=tokens_dir,
+        lemmas_dir=lemmas_dir,
+        combined_tokens_path=args.combined_tokens,
+        combined_lemmas_path=args.combined_lemmas,
+    )
 
 
 if __name__ == "__main__":
