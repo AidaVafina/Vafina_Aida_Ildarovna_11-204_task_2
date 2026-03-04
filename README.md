@@ -49,9 +49,10 @@ python -m src.main --input-dir data/raw --output-dir output
 
 ## Проверка без запуска
 
-В репозитории уже лежат примеры результатов в папке `output/` для файлов:
+В репозитории уже лежат готовые результаты в папке `output/` для файлов из задания:
 
-- `data/raw/page_1.txt`
-- `data/raw/page_2.html`
+- `data/raw/lemmas_1.txt`
+- `data/raw/lemmas_2.txt`
+- `data/raw/tokens_1.txt`
 
 То есть преподаватель может проверить результат напрямую, не запуская код.
